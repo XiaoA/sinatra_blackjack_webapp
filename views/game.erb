@@ -26,13 +26,12 @@
     What would you like to do?
     <%= session[:player_name] %> has <%= calculate_total(session[:player_cards]) %>
 
-
     <% if @show_hit_or_stand_buttons %>
-	<form id="hit" action="/game/player/hit" method="POST">
+	<form id="hit_form" action="/game/player/hit" method="POST">
 	    <input class="btn btn-success btn-large" type="submit" name="Hit" value="Hit"></input>
 	</form>
 
-	<form id="stand" action="/game/player/stand" method="POST">
+	<form id="stand_form" action="/game/player/stand" method="POST">
 	    <input class="btn btn-warning btn-large" type="submit" name="Stand" value="Stand"></input>
 	</form>
     <% end %>

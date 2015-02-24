@@ -1,0 +1,9 @@
+form#hit_form{
+    float:left;
+    margin-right: 10px;
+}
+
+
+form#stand_form{
+    float:left;
+}
