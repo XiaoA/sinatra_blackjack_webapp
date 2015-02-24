@@ -3,21 +3,24 @@
 <p>Welcome <%= session[:player_name] %>.</p>
 
 <div class="well">
-<h4>Dealer's cards:</h4>
-<ul>
-    <% session[:dealer_cards].each do |card| %>
-	<li><%= card.to_s %></li>
-    <% end %>
-</ul>
+    <h4>Dealer's cards:</h4>
+    <ul>
+	<% session[:dealer_cards].each do |card| %>
+	    <li><%= card.to_s %></li>
+	<% end %>
+    </ul>
 </div>
+
 <br />
 
-Player's cards:
-<ul>
-    <% session[:player_cards].each do |card| %>
-	<li><%= card.to_s %></li>
-    <% end %>
-</ul>
+<div class="well">
+    <h4>Player's cards:</h4>
+    <ul>
+	<% session[:player_cards].each do |card| %>
+	    <li><%= card.to_s %></li>
+	<% end %>
+    </ul>
+</div>
 
 <p>
     What would you like to do?
