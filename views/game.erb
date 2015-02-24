@@ -4,22 +4,18 @@
 
 <div class="well">
     <h4>Dealer's cards:</h4>
-    <ul>
-	<% session[:dealer_cards].each do |card| %>
-	    <li><%= card_image(card) %></li>
-	<% end %>
-    </ul>
+    <% session[:dealer_cards].each do |card| %>
+	<%= card_image(card) %>
+    <% end %>
 </div>
 
 <br />
 
 <div class="well">
     <h4>Player's cards:</h4>
-    <ul>
-	<% session[:player_cards].each do |card| %>
-	    <li><%= card_image(card) %></li>
-	<% end %>
-    </ul>
+    <% session[:player_cards].each do |card| %>
+	<%= card_image(card) %>
+    <% end %>
 </div>
 
 <p>
