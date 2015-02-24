@@ -111,4 +111,8 @@ post '/game/player/stand' do
   erb :game
 end
 
-
+post '/game/dealer/hit' do
+  session[:player_cards] << session[:deck].pop
+  @show_hit_or_stand_buttons = false
+  erb :game
+end
