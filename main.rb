@@ -6,48 +6,49 @@ set :sessions, true
 
 helpers do
   def calculate_total(cards)
-  array = cards.map{|element| element[1]}
+    array = cards.map{|element| element[1]}
 
-  total = 0
-  array.each do |a|
-    if a == "A"
-      total += 11
-    else
-      total += a.to_i == 0 ? 10 : a.to_i
+    total = 0
+    array.each do |a|
+      if a == "A"
+        total += 11
+      else
+        total += a.to_i == 0 ? 10 : a.to_i
+      end
     end
-  end
 
-  # Correct for Aces
-  array.select{|element| element == "A"}.count.times do
-    break if total <= 21
-    total -= 10
-  end
-  
-  total
+    # Correct for Aces
+    array.select{|element| element == "A"}.count.times do
+      break if total <= 21
+      total -= 10
+    end
+    
+    total
   end
 end
 
 def card_image(card)
- suit = case card[0]
-  when 'H' then 'hearts'
-  when 'D' then 'diamonds'
-  when 'C' then 'clubs'
-  when 'S' then 'spades'
+  suit = case card[0]
+         when 'H' then 'hearts'
+         when 'D' then 'diamonds'
+         when 'C' then 'clubs'
+         when 'S' then 'spades'
+         end
+
+  value = card[1]
+  if ['J', 'Q', 'K', 'A'].include?(value)
+    value = case card[1]
+            when 'J' then 'jack'
+            when 'Q' then 'queen'
+            when 'K' then 'king'
+            when 'A' then 'ace'
+            end
   end
-
- value = card[1]
- if ['J', 'Q', 'K', 'A'].include?(value)
-   value = case card[1]
-           when 'J' then 'jack'
-           when 'Q' then 'queen'
-           when 'K' then 'king'
-           when 'A' then 'ace'
-           end
-
-
-   "<img src='/images/cards/#{suit}_#{value}.jpg'>"
- end
+  
+  "<img src='/images/cards/#{suit}_#{value}.jpg'>"
 end
+
+
 
 
 before do
