@@ -27,6 +27,10 @@ helpers do
   end
 end
 
+before do
+  @show_hit_or_stand_buttons = true
+end
+
 get '/' do
   if session[:player_name]
     redirect '/game'
@@ -65,6 +69,7 @@ post '/game/player/hit' do
   session[:player_cards] << session[:deck].pop
   if calculate_total(session[:player_cards]) > 21
     @error = "Sorry, it looks like you busted."
+    @show_hit_or_stand_buttons = false
   end
   
   erb :game
@@ -72,6 +77,7 @@ end
 
 post '/game/player/stand' do
   @success = "Player stands."
+  @show_hit_or_stand_buttons = false
   erb :game
 end
 
