@@ -5,7 +5,7 @@ require 'shotgun'
 set :sessions, true
 
 helpers do
-  calculate_total(cards)
+  def calculate_total(cards)
   array = cards.map{|element| element[1]}
 
   total = 0
@@ -24,8 +24,8 @@ helpers do
   end
   
   total
+  end
 end
-
 
 get '/' do
   if session[:player_name]
