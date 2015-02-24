@@ -17,7 +17,7 @@
     <h4>Player's cards:</h4>
     <ul>
 	<% session[:player_cards].each do |card| %>
-	    <li><%= card.to_s %></li>
+	    <li><%= card_image(card) %></li>
 	<% end %>
     </ul>
 </div>
