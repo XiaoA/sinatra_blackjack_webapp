@@ -1,6 +1,6 @@
 # Let's play Blackjack...on the web!
 
-This is the final Blackjack version of [Tealeaf Academy's](http://www.gotealeaf.com") first course. The previous versions, which can be found [here](https://github.com/XiaoA/Ruby_Blackjack), included:
+This is the final Blackjack version of [Tealeaf Academy's](http://www.gotealeaf.com") first course. The previous versions, which can be found [here](https://github.com/XiaoA/Ruby_Blackjack), include:
 
 1. A [procedural Blackjack game](https://github.com/XiaoA/Ruby_Blackjack/blob/master/blackjack.rb), written in Ruby.
 2. An [Object-Oriented Blackjack game](https://github.com/XiaoA/Ruby_Blackjack/blob/master/oop_blackjack.rb), refactored from the procedural version.
