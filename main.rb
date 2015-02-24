@@ -4,6 +4,29 @@ require 'shotgun'
 
 set :sessions, true
 
+helpers do
+  calculate_total(cards)
+  array = cards.map{|element| element[1]}
+
+  total = 0
+  array.each do |a|
+    if a == "A"
+      total += 11
+    else
+      total += a.to_i == 0 ? 10 : a.to_i
+    end
+  end
+
+  # Correct for Aces
+  array.select{|element| element == "A"}.count.times do
+    break if total <= 21
+    total -= 10
+  end
+  
+  total
+end
+
+
 get '/' do
   if session[:player_name]
     redirect '/game'
@@ -36,3 +59,6 @@ get '/game' do
   session[:player_cards] << session[:deck].pop
   erb :game
 end
+
+
+
