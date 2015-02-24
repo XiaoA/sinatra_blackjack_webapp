@@ -27,6 +27,29 @@ helpers do
   end
 end
 
+def card_image(card)
+ suit = case card[0]
+  when 'H' then 'hearts'
+  when 'D' then 'diamonds'
+  when 'C' then 'clubs'
+  when 'S' then 'spades'
+  end
+
+ value = card[1]
+ if ['J', 'Q', 'K', 'A'].include?(value)
+   value = case card[1]
+           when 'J' then 'jack'
+           when 'Q' then 'queen'
+           when 'K' then 'king'
+           when 'A' then 'ace'
+           end
+
+
+   "<img src='/images/cards/#{suit}_#{value}.jpg'>"
+ end
+end
+
+
 before do
   @show_hit_or_stand_buttons = true
 end
