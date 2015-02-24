@@ -113,6 +113,14 @@ end
 
 post '/game/dealer/hit' do
   session[:player_cards] << session[:deck].pop
-  @show_hit_or_stand_buttons = false
+
+  dealer_total = calculate_total(session[:dealer_cards])
   erb :game
+
+  
+  if dealer_total == 21
+    @success = "Dealer hit Blackjack. Sorry, #{session[:player_name]}, you lose."
+  elsif dealer_total > 21
+    @error = "Dealer busted. Congratulations, #{session[:player_name]}, you win!"
+  end
 end
