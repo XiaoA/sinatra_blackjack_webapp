@@ -91,11 +91,17 @@ end
 
 post '/game/player/hit' do
   session[:player_cards] << session[:deck].pop
-  if calculate_total(session[:player_cards]) > 21
+
+  player_total = calculate_total(session[:player_cards])
+  
+  if player_total == 21
+    @success = "Congratulations, #{session[:player_name]}! You hit Blackjack!"
+    @show_hit_or_stand_buttons = false
+  elsif player_total > 21
     @error = "Sorry, #{session[:player_name]}, you've busted."
     @show_hit_or_stand_buttons = false
   end
-  
+
   erb :game
 end
 
