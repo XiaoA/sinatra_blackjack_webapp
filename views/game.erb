@@ -2,13 +2,14 @@
 
 <p>Welcome <%= session[:player_name] %>.</p>
 
-Dealer's cards:
+<div class="well">
+<h4>Dealer's cards:</h4>
 <ul>
     <% session[:dealer_cards].each do |card| %>
 	<li><%= card.to_s %></li>
     <% end %>
 </ul>
-
+</div>
 <br />
 
 Player's cards:
