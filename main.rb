@@ -63,8 +63,13 @@ end
 
 post '/game/player/hit' do
   session[:player_cards] << session[:deck].pop
-  erb :game
+  if calculate_total(session[:player_cards]) > 21
+    @error = "Sorry, it looks like you busted."
   end
+  
+  erb :game
+end
+
 
 
 
