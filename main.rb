@@ -61,4 +61,10 @@ get '/game' do
 end
 
 
+post '/game/player/hit' do
+  session[:player_cards] << session[:deck].pop
+  erb :game
+  end
+
+
 
