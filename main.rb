@@ -45,7 +45,7 @@ def card_image(card)
             end
   end
   
-  "<img src='/images/cards/#{suit}_#{value}.jpg'>"
+  "<img src='/images/cards/#{suit}_#{value}.jpg' class='card_image'>"
 end
 
 
