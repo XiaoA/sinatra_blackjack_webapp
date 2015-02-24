@@ -70,6 +70,9 @@ post '/game/player/hit' do
   erb :game
 end
 
-
+post '/game/player/stand' do
+  @success = "Player stands."
+  erb :game
+end
 
 
