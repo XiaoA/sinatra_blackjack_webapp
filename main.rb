@@ -108,7 +108,7 @@ end
 post '/game/player/stand' do
   @success = "#{session[:player_name]} stands."
   @show_hit_or_stand_buttons = false
-  erb :game
+  redirect '/game/dealer'
 end
 
 post '/game/dealer/hit' do
