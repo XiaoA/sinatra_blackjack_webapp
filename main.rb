@@ -117,7 +117,7 @@ get '/game/dealer/'
 dealer_total = calculate_total(session[:dealer_cards])
 
 if dealer_total == 21
-  @error = "Sorry, dealer hit Blackjack."
+  @error = "Sorry, the dealer hit Blackjack."
 elsif dealer_total > 21
   @success = "Congratulations, the dealer busted. You win!"
 elsif dealer_total >= 17
