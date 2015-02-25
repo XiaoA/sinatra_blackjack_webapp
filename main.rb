@@ -1,6 +1,5 @@
 require 'rubygems'
 require 'sinatra'
-require 'shotgun'
 
 set :sessions, true
 
@@ -25,31 +24,28 @@ helpers do
     
     total
   end
-end
 
-def card_image(card)
-  suit = case card[0]
-         when 'H' then 'hearts'
-         when 'D' then 'diamonds'
-         when 'C' then 'clubs'
-         when 'S' then 'spades'
-         end
+  def card_image(card)
+    suit = case card[0]
+           when 'H' then 'hearts'
+           when 'D' then 'diamonds'
+           when 'C' then 'clubs'
+           when 'S' then 'spades'
+           end
 
-  value = card[1]
-  if ['J', 'Q', 'K', 'A'].include?(value)
-    value = case card[1]
-            when 'J' then 'jack'
-            when 'Q' then 'queen'
-            when 'K' then 'king'
-            when 'A' then 'ace'
-            end
+    value = card[1]
+    if ['J', 'Q', 'K', 'A'].include?(value)
+      value = case card[1]
+              when 'J' then 'jack'
+              when 'Q' then 'queen'
+              when 'K' then 'king'
+              when 'A' then 'ace'
+              end
+    end
+    
+    "<img src='/images/cards/#{suit}_#{value}.jpg' class='card_image'>"
   end
-  
-  "<img src='/images/cards/#{suit}_#{value}.jpg' class='card_image'>"
 end
-
-
-
 
 before do
   @show_hit_or_stand_buttons = true
@@ -78,6 +74,7 @@ get '/game' do
   suits = ["H", "D", "C", "S"]
   values = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"]
   session[:deck] = suits.product(values).shuffle!
+  
   # deal cards
   session[:dealer_cards] = []
   session[:player_cards] = []
@@ -85,9 +82,9 @@ get '/game' do
   session[:player_cards] << session[:deck].pop
   session[:dealer_cards] << session[:deck].pop
   session[:player_cards] << session[:deck].pop
+
   erb :game
 end
-
 
 post '/game/player/hit' do
   session[:player_cards] << session[:deck].pop
@@ -111,29 +108,29 @@ post '/game/player/stand' do
   redirect '/game/dealer'
 end
 
-get '/game/dealer/'
-@show_hit_or_stand_buttons = false
+get '/game/dealer/' do
+  @show_hit_or_stand_buttons = false
 
-dealer_total = calculate_total(session[:dealer_cards])
+  dealer_total = calculate_total(session[:dealer_cards])
 
-if dealer_total == 21
-  @error = "Sorry, the dealer hit Blackjack."
-elsif dealer_total > 21
-  @success = "Congratulations, the dealer busted. You win!"
-elsif dealer_total >= 17
-  redirect '/game/compare'
-else
-  @show_dealer_hit_button = true
+  if dealer_total == 21
+    @error = "Sorry, the dealer hit Blackjack."
+  elsif dealer_total > 21
+    @success = "Congratulations, the dealer busted. You win!"
+  elsif dealer_total >= 17
+    redirect '/game/compare'
+  else
+    @show_dealer_hit_button = true
+  end
+
   erb :game
 end
 
 post '/game/dealer/hit' do
-  session[:player_cards] << session[:deck].pop
+  session[:dealer_cards] << session[:deck].pop
 
   dealer_total = calculate_total(session[:dealer_cards])
   erb :game
-
-
   
   if dealer_total == 21
     @success = "Dealer hit Blackjack. Sorry, #{session[:player_name]}, you lose."
@@ -141,3 +138,8 @@ post '/game/dealer/hit' do
     @error = "Dealer busted. Congratulations, #{session[:player_name]}, you win!"
   end
 end
+
+post '/game/compare' do
+  erb :game
+end
+
