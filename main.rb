@@ -126,20 +126,12 @@ get '/game/dealer/' do
   erb :game
 end
 
+
 post '/game/dealer/hit' do
   session[:dealer_cards] << session[:deck].pop
+  redirect 'game/dealer'
+end
 
-  dealer_total = calculate_total(session[:dealer_cards])
-  erb :game
   
-  if dealer_total == 21
-    @success = "Dealer hit Blackjack. Sorry, #{session[:player_name]}, you lose."
-  elsif dealer_total > 21
-    @error = "Dealer busted. Congratulations, #{session[:player_name]}, you win!"
-  end
-end
 
-post '/game/compare' do
-  erb :game
-end
 
