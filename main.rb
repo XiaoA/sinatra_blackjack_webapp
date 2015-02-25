@@ -132,6 +132,20 @@ post '/game/dealer/hit' do
   redirect 'game/dealer'
 end
 
-  
+get '/game/compare/' do
+  @show_hit_or_stand_buttons = false
 
+  player_total = calculate_total(session[:player_cards])
+  dealer_total = calculate_total(session[:dealer_cards])
+
+  if player_total < dealer_total
+    @error = "Sorry, #{player_name}, you lost."
+  elsif player_total > dealer_total
+    @success = "You won, #{player_name}!"
+  else
+    @success = "It's a tie!'"
+  end
+
+  erb :game
+end
 
