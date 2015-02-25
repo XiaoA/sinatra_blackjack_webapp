@@ -111,11 +111,28 @@ post '/game/player/stand' do
   redirect '/game/dealer'
 end
 
+get '/game/dealer/'
+@show_hit_or_stand_buttons = false
+
+dealer_total = calculate_total(session[:dealer_cards])
+
+if dealer_total == 21
+  @error = "Sorry, dealer hit Blackjack."
+elsif dealer_total > 21
+  @success = "Congratulations, the dealer busted. You win!"
+elsif dealer_total >= 17
+  redirect '/game/compare'
+else
+  @show_dealer_hit_button = true
+  erb :game
+end
+
 post '/game/dealer/hit' do
   session[:player_cards] << session[:deck].pop
 
   dealer_total = calculate_total(session[:dealer_cards])
   erb :game
+
 
   
   if dealer_total == 21
