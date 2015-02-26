@@ -45,6 +45,18 @@ helpers do
     
     "<img src='/images/cards/#{suit}_#{value}.jpg' class='card_image'>"
   end
+
+  def winner(msg)
+    @success = "<strong>#{session[:player_name]} wins!</strong> #{msg}"
+  end
+
+  def loser!(msg)
+    @error = "<strong>#{session[:player_name]} loses.</strong> #{msg}"
+  end
+
+  def tie!(msg)
+    @success = "<strong>It's a tie!</strong> #{msg}"
+  end
 end
 
 before do
@@ -64,6 +76,11 @@ get '/new_player' do
 end
 
 post '/new_player' do
+  if params[:player_name].empty?
+    @error = "Please enter your name."
+    halt erb(:new_player)
+  end
+
   session[:player_name] = params[:player_name]
   redirect '/game'
 end
@@ -92,10 +109,10 @@ post '/game/player/hit' do
   player_total = calculate_total(session[:player_cards])
   
   if player_total == 21
-    @success = "Congratulations, #{session[:player_name]}! You hit Blackjack!"
+    winner!("#{session[:player_name]} hit Blackjack!")
     @show_hit_or_stand_buttons = false
   elsif player_total > 21
-    @error = "Sorry, #{session[:player_name]}, you've busted."
+    loser!("#{session[:player_name]} busted.")
     @show_hit_or_stand_buttons = false
   end
 
@@ -139,11 +156,11 @@ get '/game/compare' do
   dealer_total = calculate_total(session[:dealer_cards])
 
   if player_total < dealer_total
-    @error = "Sorry, #{player_name}, you lost."
+    loser!("#{session[:player_name]} stands at #{player_total}, and the dealer stands at #{dealer_total}.")
   elsif player_total > dealer_total
-    @success = "You won, #{player_name}!"
+    winner!("#{session[:player_name]} stands at #{player_total}, and the dealer stands at #{dealer_total}.")
   else
-    @success = "It's a tie!'"
+    tie!("Both #{session[:player_name]} and the dealer stand at #{player_total}.")
   end
 
   erb :game
