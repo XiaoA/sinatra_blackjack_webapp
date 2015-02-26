@@ -2,6 +2,14 @@
 
 <p>Welcome <%= session[:player_name] %>.</p>
 
+<% if @play_again %>
+    <p>
+	<strong>Play again?</strong>
+	<a href="/game" class="btn btn-primary">Yes</a>
+	<a href="/game_over" class="btn">No</a>
+    </p>
+<% end %>
+
 <div class="well">
     <h4>Dealer's cards:</h4>
     <% session[:dealer_cards].each do |card| %>
@@ -12,7 +20,7 @@
 	<p>
 	    <h5>Dealer has <%= calculate_total(session[:dealer_cards])%> and will hit.</h5>
 	    <form action="/game/dealer/hit" method="POST">
-	    <input class ="btn btn-primary" type="submit" value="Click to see see dealer's card &rarr;"></input>	</form>
+		<input class ="btn btn-primary" type="submit" value="Click to see see dealer's card &rarr;"></input>	</form>
 	</p>
     <% end %>
 </div>

@@ -46,17 +46,20 @@ helpers do
     "<img src='/images/cards/#{suit}_#{value}.jpg' class='card_image'>"
   end
 
-  def winner(msg)
+  def winner!(msg)
+    @play_again = true
     @show_hit_or_stand_buttons = false
     @success = "<strong>#{session[:player_name]} wins!</strong> #{msg}"
   end
 
   def loser!(msg)
+    @play_again = true
     @show_hit_or_stand_buttons = false
     @error = "<strong>#{session[:player_name]} loses.</strong> #{msg}"
   end
 
   def tie!(msg)
+    @play_again = true
     @show_hit_or_stand_buttons = false
     @success = "<strong>It's a tie!</strong> #{msg}"
   end
@@ -114,7 +117,7 @@ post '/game/player/hit' do
   if player_total == 21
     winner!("#{session[:player_name]} hit Blackjack!")
   elsif player_total > 21
-    loser!("#{session[:player_name]} busted.")
+    loser!("#{session[:player_name]} busted at #{player_total}.")
   end
 
   erb :game
