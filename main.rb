@@ -23,7 +23,7 @@ helpers do
     array.select{|element| element == "A"}.count.times do
       break if total <= BLACKJACK_AMOUNT
       total -= 10
-    end
+      end
     
     total
   end
@@ -95,6 +95,8 @@ post '/new_player' do
 end
 
 get '/game' do
+  session[:turn] = session[:player_name]
+  
   # create a deck and put it in session
 
   suits = ["H", "D", "C", "S"]
@@ -133,6 +135,7 @@ post '/game/player/stand' do
 end
 
 get '/game/dealer' do
+  session[:turn] = "dealer"
   @show_hit_or_stand_buttons = false
 
   dealer_total = calculate_total(session[:dealer_cards])
