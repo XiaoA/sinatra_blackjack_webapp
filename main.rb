@@ -108,7 +108,7 @@ post '/game/player/stand' do
   redirect '/game/dealer'
 end
 
-get '/game/dealer/' do
+get '/game/dealer' do
   @show_hit_or_stand_buttons = false
 
   dealer_total = calculate_total(session[:dealer_cards])
