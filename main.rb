@@ -131,9 +131,9 @@ get '/game/dealer' do
   dealer_total = calculate_total(session[:dealer_cards])
 
   if dealer_total == 21
-    @error = "Sorry, the dealer hit Blackjack."
+    loser!("Dealer hit Blackjack.")
   elsif dealer_total > 21
-    @success = "Congratulations, the dealer busted. You win!"
+    winner!("Dealer busted at #{dealer_total} .")
   elsif dealer_total >= 17
     redirect '/game/compare'
   else
