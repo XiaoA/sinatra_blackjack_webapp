@@ -3,6 +3,9 @@ require 'sinatra'
 
 set :sessions, true
 
+BLACKJACK_AMOUNT = 21
+DEALER_MINIMUM_HIT_AMOUNT = 17
+
 helpers do
   def calculate_total(cards)
     array = cards.map{|element| element[1]}
@@ -18,7 +21,7 @@ helpers do
 
     # Correct for Aces
     array.select{|element| element == "A"}.count.times do
-      break if total <= 21
+      break if total <= BLACKJACK_AMOUNT
       total -= 10
     end
     
@@ -114,9 +117,9 @@ post '/game/player/hit' do
 
   player_total = calculate_total(session[:player_cards])
   
-  if player_total == 21
+  if player_total == BLACKJACK_AMOUNT
     winner!("#{session[:player_name]} hit Blackjack!")
-  elsif player_total > 21
+  elsif player_total > BLACKJACK_AMOUNT
     loser!("#{session[:player_name]} busted at #{player_total}.")
   end
 
@@ -134,11 +137,11 @@ get '/game/dealer' do
 
   dealer_total = calculate_total(session[:dealer_cards])
 
-  if dealer_total == 21
+  if dealer_total == BLACKJACK_AMOUNT
     loser!("Dealer hit Blackjack.")
-  elsif dealer_total > 21
+  elsif dealer_total > BLACKJACK_AMOUNT
     winner!("Dealer busted at #{dealer_total} .")
-  elsif dealer_total >= 17
+  elsif dealer_total >= DEALER_MINIMUM_HIT_AMOUNT
     redirect '/game/compare'
   else
     @show_dealer_hit_button = true
