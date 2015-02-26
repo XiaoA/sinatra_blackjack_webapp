@@ -47,14 +47,17 @@ helpers do
   end
 
   def winner(msg)
+    @show_hit_or_stand_buttons = false
     @success = "<strong>#{session[:player_name]} wins!</strong> #{msg}"
   end
 
   def loser!(msg)
+    @show_hit_or_stand_buttons = false
     @error = "<strong>#{session[:player_name]} loses.</strong> #{msg}"
   end
 
   def tie!(msg)
+    @show_hit_or_stand_buttons = false
     @success = "<strong>It's a tie!</strong> #{msg}"
   end
 end
@@ -110,10 +113,8 @@ post '/game/player/hit' do
   
   if player_total == 21
     winner!("#{session[:player_name]} hit Blackjack!")
-    @show_hit_or_stand_buttons = false
   elsif player_total > 21
     loser!("#{session[:player_name]} busted.")
-    @show_hit_or_stand_buttons = false
   end
 
   erb :game
