@@ -91,13 +91,13 @@ get '/new_player' do
 end
 
 post '/new_player' do
-  if params[:player_name].empty?
+  if params[:player_name].empty? || params[:player_name].to_i != 0
     @error = "Please enter your name."
     halt erb(:new_player)
-  end
-
+  else
   session[:player_name] = params[:player_name]
   redirect '/bet'
+  end
 end
 
 get '/bet' do
