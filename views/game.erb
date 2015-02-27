@@ -40,7 +40,9 @@
 
 <p>
     What would you like to do, <%= session[:player_name] %>?
-    You have a total of <%= calculate_total(session[:player_cards]) %>
+    You have a total of <strong><%= calculate_total(session[:player_cards]) %></strong>
+    <br />
+You've got <strong>$<%= session[:player_bankroll]%></strong>, and your bet for this round is <strong>$<%= session[:bet_amount]%></strong>.</p>
 
     <% if @show_hit_or_stand_buttons %>
 	<form id="hit_form" action="/game/player/hit" method="POST">
