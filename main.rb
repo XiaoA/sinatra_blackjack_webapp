@@ -23,7 +23,7 @@ helpers do
     array.select{|element| element == "A"}.count.times do
       break if total <= BLACKJACK_AMOUNT
       total -= 10
-      end
+    end
     
     total
   end
@@ -91,6 +91,12 @@ post '/new_player' do
   end
 
   session[:player_name] = params[:player_name]
+  redirect '/bet'
+end
+
+post '/bet' do
+  session[:player_bankroll] = 500
+  session[:player_bet] = 0
   redirect '/game'
 end
 
