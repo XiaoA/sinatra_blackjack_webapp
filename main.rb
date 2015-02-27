@@ -105,10 +105,7 @@ get '/bet' do
 end
 
 post '/bet' do
-  if params[:bet_amount].empty?
-    @error = "You must place a bet."
-    halt erb(:bet)
-  elsif params[:bet_amount].to_i == 0
+  if params[:bet_amount].empty? || params[:bet_amount].to_i == 0
     @error = "You must place a bet."
     halt erb(:bet)
   else
