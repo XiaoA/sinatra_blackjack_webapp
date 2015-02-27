@@ -99,6 +99,11 @@ get '/bet' do
 end
 
 post '/bet' do
+  if params[:bet_amount].empty?
+    @error = "You must place a bet."
+    halt erb(:bet)
+  end
+  
   session[:player_bankroll] = 500
   session[:bet_amount] = params[:bet_amount]
   redirect '/game'
