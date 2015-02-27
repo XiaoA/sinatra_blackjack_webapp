@@ -94,6 +94,10 @@ post '/new_player' do
   redirect '/bet'
 end
 
+get '/bet' do
+  erb :bet
+end
+
 post '/bet' do
   session[:player_bankroll] = 500
   session[:player_bet] = 0
