@@ -100,7 +100,7 @@ end
 
 post '/bet' do
   session[:player_bankroll] = 500
-  session[:bet_amount] = 0
+  session[:bet_amount] = params[:bet_amount]
   redirect '/game'
 end
 
