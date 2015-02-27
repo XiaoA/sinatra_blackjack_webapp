@@ -1,4 +1,5 @@
 <h2>Place your bet.</h2>
+<p><%= session[:player_name]%> has $<%= session[:player_bankroll]%>.</p>
 
 <form action="/bet" method="POST">
     <input type="text" name="bet_amount">
