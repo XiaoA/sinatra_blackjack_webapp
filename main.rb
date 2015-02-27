@@ -52,7 +52,7 @@ helpers do
   def winner!(msg)
     @play_again = true
     @show_hit_or_stand_buttons = false
-    @success = "<strong>#{session[:player_name]} wins!</strong> #{msg}"
+    @success = "<strong>#{session[:player_name]} wins!</strong> #{msg} You won $#{session[:bet_amount]}, for a new total of $#{session[:winning_bankroll]}."
   end
 
   def loser!(msg)
@@ -66,6 +66,11 @@ helpers do
     @show_hit_or_stand_buttons = false
     @success = "<strong>It's a tie!</strong> #{msg}"
   end
+
+  def calculate_winning_bankroll
+    session[:winning_bankroll] << session[:bet_amount]
+  end
+
 end
 
 before do
