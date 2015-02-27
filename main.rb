@@ -108,6 +108,9 @@ post '/bet' do
   if params[:bet_amount].empty? || params[:bet_amount].to_i == 0
     @error = "You must place a bet."
     halt erb(:bet)
+  elsif (params[:bet_amount].to_i < 5) || (params[:bet_amount].to_i > session[:player_bankroll].to_i)
+    @error = "Your bet must be between $5 and $#{session[:player_bankroll]}."
+    halt erb(:bet)
   else
   session[:player_bankroll] = 500
   session[:bet_amount] = params[:bet_amount]
