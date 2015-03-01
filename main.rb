@@ -199,10 +199,9 @@ get '/game/compare' do
   erb :game
 end
 
-# get '/settle_bets' do
-# session[:player_bankroll] = session[:player_bankroll].to_i + session[:bet_amount].to_i
-# #redirect "/game"
-# end
+get '/no_money' do
+  erb :no_money
+end
 
 get '/game_over' do
   erb :game_over
