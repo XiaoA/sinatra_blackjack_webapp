@@ -52,7 +52,7 @@ helpers do
   def winner!(msg)
     @play_again = true
     @show_hit_or_stand_buttons = false
-        session[:player_bankroll] = session[:player_bankroll].to_i + session[:bet_amount].to_i
+    session[:player_bankroll] = session[:player_bankroll].to_i + session[:bet_amount].to_i
     @success = "<strong>#{session[:player_name]} wins!</strong> <br />#{msg} You won $#{session[:bet_amount]}, so you now have $#{session[:player_bankroll]}."
   end
 
@@ -102,15 +102,17 @@ get '/bet' do
 end
 
 post '/bet' do
-  if params[:bet_amount].empty? || params[:bet_amount].to_i == 0
+  if session[:player_bankroll].to_i == 0
+    redirect '/no_money'
+  elsif params[:bet_amount].empty? || params[:bet_amount].to_i == 0 
     @error = "You must place a bet."
     halt erb(:bet)
   elsif (params[:bet_amount].to_i < 5) || (params[:bet_amount].to_i > session[:player_bankroll].to_i)
     @error = "Your bet must be between $5 and $#{session[:player_bankroll]}."
     halt erb(:bet)
   else
-  session[:bet_amount] = params[:bet_amount]
-  redirect '/game'
+    session[:bet_amount] = params[:bet_amount]
+    redirect '/game'
   end  
 
 end
