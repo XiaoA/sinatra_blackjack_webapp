@@ -10,6 +10,10 @@
     </p>
 <% end %>
 
+<% if @player_leave_table %>
+    <a href="/no_money" class="btn btn-danger btn-large" id="leave_table">Click to Leave Table</a>
+<% end %>
+
 <div class="well">
     <h4>Dealer's cards:</h4>
     <% session[:dealer_cards].each_with_index do |card, index| %>

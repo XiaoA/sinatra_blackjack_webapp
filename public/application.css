@@ -24,11 +24,11 @@ body{
     /* background-color:#409949; */
 }
 
-.trim{
+.trim {
     color:#e6e699;
 }
 
-.well{
+.well {
     background-color:#336630;
     border-width:2px;
     border-style:solid;
@@ -68,4 +68,10 @@ div.alert.alert-success, div.alert.alert-error {
 
 div.alert.alert-error {
     background-color:#fff
+}
+
+/* Buttons */
+
+a#leave_table.btn.btn-danger {
+    margin-bottom:30px;
 }

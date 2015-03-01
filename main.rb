@@ -61,6 +61,10 @@ helpers do
     @show_hit_or_stand_buttons = false
     session[:player_bankroll] = session[:player_bankroll].to_i - session[:bet_amount].to_i
     @error = "<strong>#{session[:player_name]} loses.</strong> <br /> #{msg} You lost $#{session[:bet_amount]}, so you now have $#{session[:player_bankroll]}."
+    if session[:player_bankroll].to_i == 0
+      @play_again = false
+      @player_leave_table = true
+    end
   end
 
   def tie!(msg)
