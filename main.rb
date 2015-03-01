@@ -52,7 +52,8 @@ helpers do
   def winner!(msg)
     @play_again = true
     @show_hit_or_stand_buttons = false
-    @success = "<strong>#{session[:player_name]} wins!</strong> #{msg}"
+        session[:player_bankroll] = session[:player_bankroll].to_i + session[:bet_amount].to_i
+    @success = "<strong>#{session[:player_name]} wins!</strong> <br />#{msg} You won $#{session[:bet_amount]}, so you now have $#{session[:player_bankroll]}."
   end
 
   def loser!(msg)
