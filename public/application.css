@@ -1,3 +1,50 @@
+/* Fonts */
+.navbar .nav>li>a {
+    color:#ff0033;
+    font-size:20px;
+    font-weight:bold;
+}
+
+body h1,h2,h3,h4,h5,h6 {
+    color:#e6e699;
+}
+
+body p {
+    color:#fff;
+}
+
+div.well h4 {
+    color:#fff;
+}
+
+/* Board Styling */
+body{
+    background-color:#336633;
+    /* background-color:#407739; */
+    /* background-color:#409949; */
+}
+
+.trim{
+    color:#e6e699;
+}
+
+.well{
+    background-color:#336630;
+    border-width:2px;
+    border-style:solid;
+    border-color:#e6e699;
+}
+
+.well>p {
+    color:#fff;
+}
+
+p#play_again {
+    color:#99ccff;
+    margin-bottom:30px;
+}
+
+/* Forms */
 form#hit_form{
     float:left;
     margin-right: 10px;
@@ -7,6 +54,7 @@ form#stand_form{
     float:left;
 }
 
+/* Cards */
 img.card_image {
     margin: 0px 5px 5px 0px;
 }
