@@ -52,13 +52,14 @@ helpers do
   def winner!(msg)
     @play_again = true
     @show_hit_or_stand_buttons = false
-    @success = "<strong>#{session[:player_name]} wins!</strong> #{msg} You won $#{session[:bet_amount]}, for a new total of $#{session[:winning_bankroll]}. Or #{@calculate_winning_bankroll}."
+    @success = "<strong>#{session[:player_name]} wins!</strong> #{msg}"
   end
 
   def loser!(msg)
     @play_again = true
     @show_hit_or_stand_buttons = false
-    @error = "<strong>#{session[:player_name]} loses.</strong> #{msg}"
+    session[:player_bankroll] = session[:player_bankroll].to_i - session[:bet_amount].to_i
+    @error = "<strong>#{session[:player_name]} loses.</strong> <br /> #{msg} You lost $#{session[:bet_amount]}, so you now have $#{session[:player_bankroll]}."
   end
 
   def tie!(msg)
@@ -66,12 +67,6 @@ helpers do
     @show_hit_or_stand_buttons = false
     @success = "<strong>It's a tie!</strong> #{msg}"
   end
-
-  def calculate_winning_bankroll
-#    session[:winning_bankroll] << session[:bet_amount]
-    session[:winning_bankroll] = session[:bet_amount]
-  end
-
 end
 
 before do
@@ -95,8 +90,9 @@ post '/new_player' do
     @error = "Please enter your name."
     halt erb(:new_player)
   else
-  session[:player_name] = params[:player_name]
-  redirect '/bet'
+    session[:player_name] = params[:player_name]
+    session[:player_bankroll] = 500
+    redirect '/bet'
   end
 end
 
@@ -112,7 +108,6 @@ post '/bet' do
     @error = "Your bet must be between $5 and $#{session[:player_bankroll]}."
     halt erb(:bet)
   else
-  session[:player_bankroll] = 500
   session[:bet_amount] = params[:bet_amount]
   redirect '/game'
   end  
@@ -200,6 +195,11 @@ get '/game/compare' do
 
   erb :game
 end
+
+# get '/settle_bets' do
+# session[:player_bankroll] = session[:player_bankroll].to_i + session[:bet_amount].to_i
+# #redirect "/game"
+# end
 
 get '/game_over' do
   erb :game_over
