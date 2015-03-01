@@ -58,3 +58,14 @@ form#stand_form{
 img.card_image {
     margin: 0px 5px 5px 0px;
 }
+
+/* Game Alert Messages */
+
+div.alert.alert-success, div.alert.alert-error {
+    background-color:#fff;
+    font-weight:bold;
+}
+
+div.alert.alert-error {
+    background-color:#fff
+}
