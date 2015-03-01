@@ -8,19 +8,19 @@ DEALER_MINIMUM_HIT_AMOUNT = 17
 
 helpers do
   def calculate_total(cards)
-    array = cards.map{|element| element[1]}
+    card_values = cards.map{|element| element[1]}
 
     total = 0
-    array.each do |a|
-      if a == "A"
+    card_values.each do |value|
+      if card_values == "A"
         total += 11
       else
-        total += a.to_i == 0 ? 10 : a.to_i
+        total += value.to_i == 0 ? 10 : value.to_i
       end
     end
 
     # Correct for Aces
-    array.select{|element| element == "A"}.count.times do
+    card_values.select{|element| element == "A"}.count.times do
       break if total <= BLACKJACK_AMOUNT
       total -= 10
     end
