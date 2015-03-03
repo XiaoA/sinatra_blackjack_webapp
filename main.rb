@@ -54,14 +54,14 @@ helpers do
     @play_again = true
     @show_hit_or_stand_buttons = false
     session[:player_bankroll] = session[:player_bankroll].to_i + session[:bet_amount].to_i
-    @success = "<strong>#{session[:player_name]} wins!</strong> <br />#{msg} You won $#{session[:bet_amount]}, so you now have $#{session[:player_bankroll]}."
+    @winner = "<strong>#{session[:player_name]} wins!</strong> <br />#{msg} You won $#{session[:bet_amount]}, so you now have $#{session[:player_bankroll]}."
   end
 
   def loser!(msg)
     @play_again = true
     @show_hit_or_stand_buttons = false
     session[:player_bankroll] = session[:player_bankroll].to_i - session[:bet_amount].to_i
-    @error = "<strong>#{session[:player_name]} loses.</strong> <br /> #{msg} You lost $#{session[:bet_amount]}, so you now have $#{session[:player_bankroll]}."
+    @loser = "<strong>#{session[:player_name]} loses.</strong> <br /> #{msg} You lost $#{session[:bet_amount]}, so you now have $#{session[:player_bankroll]}."
     if session[:player_bankroll].to_i == 0
       @play_again = false
       @player_leave_table = true
