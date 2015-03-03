@@ -1,7 +1,7 @@
 $(document).ready(function() {
     player_hits();
     player_stands();
-    dealer_hit();
+    dealer_hits();
 });
 
 function player_hits() {
