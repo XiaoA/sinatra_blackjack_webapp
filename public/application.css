@@ -17,7 +17,7 @@ div.well h4 {
     color:#fff;
 }
 
-span#game_over_bankroll_amount {
+span.game_over_bankroll_amount {
     color:red;
 }
 
