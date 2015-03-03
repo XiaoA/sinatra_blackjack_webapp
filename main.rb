@@ -1,5 +1,6 @@
 require 'rubygems'
 require 'sinatra'
+require 'pry'
 
 set :sessions, true
 
@@ -71,7 +72,7 @@ helpers do
   def tie!(msg)
     @play_again = true
     @show_hit_or_stand_buttons = false
-    @success = "<strong>It's a tie!</strong> #{msg}"
+    @winner = "<strong>It's a tie!</strong> #{msg}"
   end
 end
 
