@@ -5,6 +5,7 @@ set :sessions, true
 
 BLACKJACK_AMOUNT = 21
 DEALER_MINIMUM_HIT_AMOUNT = 17
+INITIAL_PLAYER_BANLROLL = 500
 
 helpers do
   def calculate_total(cards)
@@ -96,7 +97,7 @@ post '/new_player' do
     halt erb(:new_player)
   else
     session[:player_name] = params[:player_name]
-    session[:player_bankroll] = 500
+    session[:player_bankroll] = INITIAL_PLAYER_BANLROLL
     redirect '/bet'
   end
 end
