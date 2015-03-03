@@ -18,7 +18,7 @@ div.well h4 {
 }
 
 span.game_over_bankroll_amount {
-    color:red;
+    color:#ffff00;
 }
 
 /* Board Styling */
