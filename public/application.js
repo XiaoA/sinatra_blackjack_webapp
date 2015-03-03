@@ -5,6 +5,8 @@ $(document).ready(function() {
 	$.ajax({
 	    type: "POST",
 	    url: "/game/player/hit"
+	}).done(function(msg) {
+	    alert(msg);
 	});
 
 	return false;
