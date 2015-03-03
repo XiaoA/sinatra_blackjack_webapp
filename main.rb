@@ -2,7 +2,10 @@ require 'rubygems'
 require 'sinatra'
 require 'pry'
 
-set :sessions, true
+use Rack::Session::Cookie,
+    :key => 'rack.session',
+    :path => '/',
+    :secret => 'sekai heiwa'
 
 BLACKJACK_AMOUNT = 21
 DEALER_MINIMUM_HIT_AMOUNT = 17
