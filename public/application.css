@@ -17,6 +17,10 @@ div.well h4 {
     color:#fff;
 }
 
+span#game_over_bankroll_amount {
+    color:red;
+}
+
 /* Board Styling */
 body{
     background-color:#336633;
