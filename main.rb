@@ -17,7 +17,7 @@ helpers do
 
     total = 0
     card_values.each do |value|
-      if card_values == "A"
+      if value == "A"
         total += 11
       else
         total += value.to_i == 0 ? 10 : value.to_i
