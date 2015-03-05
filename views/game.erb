@@ -37,7 +37,7 @@
   </div>
   <div class="row">
     <div class="span6">
-      <div class="alert alert-info" id="player_message">
+      <div id="player_message">
 	<p>What would you like to do, <%= session[:player_name] %>? You have a total of <strong><%= calculate_total(session[:player_cards]) %></strong>
 	  <br />You've got <strong>$<%= session[:player_bankroll]%></strong>, and your bet for this round is <strong>$<%= session[:bet_amount]%></strong>.</p>
       </div>
