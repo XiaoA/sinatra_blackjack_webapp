@@ -10,13 +10,7 @@
     <div class="alert alert-success"><%= @winner%></div>
   <% end %>
 
-  <% if @play_again %>
-    <p id="play_again">
-      <strong>Play again?</strong>
-      <a href="/bet" class="btn btn-primary">Yes</a>
-      <a href="/game_over" class="btn">No</a>
-    </p>
-  <% end %>
+  
 
   <% if @player_leave_table %>
     <a href="/no_money" class="btn btn-danger btn-large" id="leave_table">Click to leave table &rarr;</a>
@@ -69,7 +63,14 @@
 	  </form>
 	</p>
       <% end %>
-      
+
+      <% if @play_again %>
+    <p id="play_again">
+      <strong>Play again?</strong>
+      <a href="/bet" class="btn btn-primary">Yes</a>
+      <a href="/game_over" class="btn">No</a>
+    </p>
+  <% end %>
     </div>
   </div>
 </div>
