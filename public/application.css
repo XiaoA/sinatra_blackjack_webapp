@@ -61,6 +61,8 @@ form#stand_form{
 /* Cards */
 img.card_image {
     margin: 0px 5px 5px 0px;
+    width:90px;
+    height: 125px;
 }
 
 /* Game Alert Messages */
