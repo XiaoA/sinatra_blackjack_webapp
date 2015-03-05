@@ -42,19 +42,12 @@
 	  <% end %>
 	<% end %>
 
-	<% if @show_dealer_hit_button %>
-	  <p>
-	    <h5>Dealer has <%= calculate_total(session[:dealer_cards])%> and will hit.</h5>
-	    <form id="dealer_hit" action="/game/dealer/hit" method="POST">
-	      <input class ="btn btn-primary" type="submit" value="Click to see see dealer's card &rarr;"></input>
-	    </form>
-	  </p>
-	<% end %>
+
       </div>
     </div>
-    </div>
-    <div class="row">
-      <div class="span6">
+  </div>
+  <div class="row">
+    <div class="span6">
       <p>What would you like to do, <%= session[:player_name] %>? You have a total of <strong><%= calculate_total(session[:player_cards]) %></strong>
 	<br />You've got <strong>$<%= session[:player_bankroll]%></strong>, and your bet for this round is <strong>$<%= session[:bet_amount]%></strong>.</p>
 
@@ -67,6 +60,16 @@
 	  <input class="btn btn-warning btn-large" type="submit" name="Stand" value="Stand"></input>
 	</form>
       <% end %>
-      </div>
+
+      <% if @show_dealer_hit_button %>
+	<p>
+	  <h5>Dealer has <%= calculate_total(session[:dealer_cards])%> and will hit.</h5>
+	  <form id="dealer_hit" action="/game/dealer/hit" method="POST">
+	    <input class ="btn btn-primary" type="submit" value="Click to see see dealer's card &rarr;"></input>
+	  </form>
+	</p>
+      <% end %>
+      
+    </div>
   </div>
 </div>
