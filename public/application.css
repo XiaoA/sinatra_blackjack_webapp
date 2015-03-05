@@ -76,6 +76,14 @@ div.alert.alert-error {
     background-color:#fff
 }
 
+div#player_message {
+    background-color:#e6e699;
+}
+
+div#player_message p {
+    color:#000;
+}
+
 /* Buttons */
 
 a#leave_table.btn.btn-danger {
