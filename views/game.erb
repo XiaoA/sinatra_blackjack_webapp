@@ -13,7 +13,7 @@
   <div class ="row">
     <div class ="span6">
       <div class="well">
-	<h4>Player's cards:</h4>
+	<h4><%= session[:player_name]%>'s cards:</h4>
 	<% session[:player_cards].each do |card| %>
 	  <%= card_image(card) %>
 	<% end %>
