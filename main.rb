@@ -143,6 +143,14 @@ get '/game' do
   session[:dealer_cards] << session[:deck].pop
   session[:player_cards] << session[:deck].pop
 
+
+  player_total = calculate_total(session[:player_cards])
+  if player_total == BLACKJACK_AMOUNT
+    winner!("#{session[:player_name]} hit Blackjack!")
+  elsif player_total > BLACKJACK_AMOUNT
+    loser!("#{session[:player_name]} busted at #{player_total}.")
+  end
+  
   erb :game
 end
 
